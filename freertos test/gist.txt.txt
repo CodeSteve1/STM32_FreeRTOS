@@ -1,0 +1,1 @@
+led is configured to portc pin 7 aka d9 in the board
