@@ -173,13 +173,13 @@ void UartReadTask(void const * argument)
 {
   for (;;)
   {
-    // Read one byte of data from UART
+    
     HAL_UART_Receive(&huart2, uartRxBuffer, 1, HAL_MAX_DELAY);
 
-    // Push the received byte to the queue
+    
     if (osMessagePut(uartQueueHandle, uartRxBuffer[0], osWaitForever) == osOK)
     {
-      // Successfully queued the data
+      
     }
   }
 }
@@ -190,11 +190,11 @@ void UartWriteTask(void const * argument)
 
   for (;;)
   {
-    // Wait to receive data from the queue
+    
     evt = osMessageGet(uartQueueHandle, osWaitForever);
     if (evt.status == osEventMessage)
     {
-      // Data received, send it back over UART
+      
       data = (uint8_t)evt.value.v;
       HAL_UART_Transmit(&huart2, &data, 1, HAL_MAX_DELAY);
       osDelay(200);
